@@ -1,0 +1,19 @@
+
+
+/* Cuando el botón está bloqueado */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* El check verde */
+#checkDni {
+    font-weight: bold;
+}
+
+.dni-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
