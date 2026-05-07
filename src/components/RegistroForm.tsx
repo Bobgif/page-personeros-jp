@@ -85,7 +85,7 @@ const RegistroForm = () => {
         </p>
       )} 
       {/* Sección DNI */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex flex-row items-center gap-2 mb-4 w-full">
         <input
           type="text"
           inputMode="numeric"
@@ -93,12 +93,13 @@ const RegistroForm = () => {
           maxLength={8}
           value={datos.dni}
           onChange={(e) => setDatos({ ...datos, dni: e.target.value.replace(/\D/g, "") })}
-          className="border-2 border-slate-200 rounded-xl p-3 flex-grow focus:border-blue-500 outline-none transition-all font-bold text-lg"
+          className="flex-1 w-0 border-2 border-slate-200 rounded-xl p-3 focus:border-blue-500 outline-none transition-all font-bold text-lg min-w-0"
         />
         <button 
           type="button" 
           onClick={verificarDni} 
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-bold transition-transform active:scale-95 shadow-lg shadow-blue-200"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-xl font-bold transition-transform active:scale-95 shadow-lg shadow-blue-200 whitespace-nowrap text-sm sm:text-base"
+  
         >
           Validar
         </button>
@@ -130,6 +131,7 @@ const RegistroForm = () => {
 
         <input 
           type="text" 
+          required
           inputMode="numeric" 
           placeholder="Celular" 
           maxLength={9} 
@@ -139,7 +141,8 @@ const RegistroForm = () => {
         />
         
         <input 
-          type="email" 
+          type="email"
+          required 
           placeholder="Correo Electrónico" 
           value={datos.correo} 
           onChange={(e) => setDatos({ ...datos, correo: e.target.value })} 
