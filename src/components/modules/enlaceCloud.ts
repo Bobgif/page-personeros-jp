@@ -15,7 +15,11 @@ export const llamarAlBunker = async (
   endpoint: string, metodo: string, cuerpo?: any
 ): Promise<RespuestaBunker> => {
   try {
-    const response = await fetch(`${API_URL}${endpoint}`, {
+    // Limpiamos la URL para evitar errores de doble barra //
+    const baseUrl = API_URL.endsWith('/') ? API_URL.slice(0, -1) : API_URL;
+    const path = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+
+    const response = await fetch(`${baseUrl}${path}`, {
       method: metodo,
       headers: {
         'Content-Type': 'application/json',
@@ -23,8 +27,21 @@ export const llamarAlBunker = async (
       },
       body: cuerpo ? JSON.stringify(cuerpo) : null
     });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        return { 
+          success: false, 
+          error: `Error del servidor: ${response.status} - ${errorData.error || 'Sin detalles'}` 
+        };
+    }
+
     return await response.json();
-  } catch {
-    return { success: false, error: "El búnker no responde" };
+  } catch (err) {
+    // Ahora sí sabrás si es un error de CORS, de red o de URL
+    console.error("Error en la conexión:", err);
+    return { success: false, error: "Error de conexión (CORS o Red)" };
   }
 };
+
+
