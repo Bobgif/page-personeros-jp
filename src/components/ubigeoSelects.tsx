@@ -51,7 +51,7 @@ export const UbigeoSelects = ({ verificado, datos, setDatos }: UbigeoProps) => {
         className="border rounded p-2 w-full mb-2 uppercase disabled:bg-gray-100"
       >
         <option value="">Seleccione Provincia</option>
-        <option value="CORONEL PORTILLOs">CORONEL PORTILLO</option>
+        <option value="CORONEL PORTILLO">CORONEL PORTILLO</option>
         <option value="PADRE ABAD">PADRE ABAD</option>
         <option value="ATALAYA">ATALAYA</option>
         <option value="PURUS">PURÚS</option>
